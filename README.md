@@ -84,25 +84,41 @@ classes.
 
 ## Files
 
-  File         Description
-  ------------ ------------------------------------
-  train.csv    Training dataset containing labels
-  test.csv     Test dataset without labels
-  Sample.csv   Submission template
+| File | Description |
+|------|-------------|
+| train.csv | Training dataset containing labels |
+| test.csv | Test dataset without labels |
+| Sample.csv | Submission template |
+
+> **📌 Dataset Notice**
+>
+> The datasets used in this project are **not included** in this repository due to the Kaggle competition's data-sharing policy.
+>
+> You can download the datasets directly from the official Kaggle competition page:
+>
+> **🔗 https://www.kaggle.com/competitions/comment-category-prediction-challenge**
+>
+> After downloading, place the following files in the project root directory:
+>
+> ```text
+> train.csv
+> test.csv
+> Sample.csv
+> ```
 
 ### Features
 
--   Comment text
--   Created timestamp
--   Upvotes & Downvotes
--   Three emoticon features
--   Internal numerical features
--   Race
--   Religion
--   Gender
--   Disability
--   Post ID
--   Target Label
+- Comment text
+- Created timestamp
+- Upvotes & Downvotes
+- Three emoticon features
+- Internal numerical features
+- Race
+- Religion
+- Gender
+- Disability
+- Post ID
+- Target Label
 
 ------------------------------------------------------------------------
 
@@ -287,15 +303,14 @@ The stacking ensemble consistently outperformed each individual model.
 
 # 📁 Repository Structure
 
-``` text
+```text
 .
-├── Comment_Category_Prediction.ipynb
-├── train.csv
-├── test.csv
-├── Sample.csv
-├── submission.csv
+├── comment-category-prediction.ipynb
 ├── README.md
-└── requirements.txt
+├── LICENSE
+├── Sample.csv
+├── requirements.txt
+└── .gitignore
 ```
 
 ------------------------------------------------------------------------
@@ -362,7 +377,10 @@ If you found this repository useful, consider giving it a ⭐.
 
 # 📜 License
 
-MIT License
+This project is licensed under the **MIT License**.
 
-This project is intended for educational, research, and portfolio
-purposes.
+See the **LICENSE** file included in this repository for the complete license text.
+
+---
+
+**Note:** This repository is intended for educational, research, and portfolio purposes. Please ensure compliance with the Kaggle Competition Rules and Terms of Use regarding dataset usage and solution sharing.
