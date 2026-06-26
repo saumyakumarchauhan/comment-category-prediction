@@ -1,26 +1,33 @@
-# 🧠 Comment Category Prediction Challenge
+<h1 align="center">🧠 Comment Category Prediction Challenge</h1>
 
-```{=html}
 <p align="center">
-```
-`<strong>`{=html}End-to-End Multi-Class Comment Classification using
-Natural Language Processing, Feature Engineering, and Stacking Ensemble
-Learning`</strong>`{=html}
-```{=html}
+  <strong>
+    End-to-End Multi-Class Comment Classification using Natural Language Processing,
+    Feature Engineering, and Stacking Ensemble Learning
+  </strong>
 </p>
-```
-```{=html}
-<p align="center">
-```
-![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
-![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?style=for-the-badge&logo=scikitlearn)
-![LightGBM](https://img.shields.io/badge/LightGBM-Boosting-green?style=for-the-badge)
-![XGBoost](https://img.shields.io/badge/XGBoost-Ensemble-red?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)
 
-```{=html}
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  </a>
+  <a href="https://scikit-learn.org/">
+    <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="Scikit-Learn">
+  </a>
+  <img src="https://img.shields.io/badge/LightGBM-Gradient_Boosting-00C853?style=for-the-badge" alt="LightGBM">
+  <img src="https://img.shields.io/badge/XGBoost-Ensemble-EC407A?style=for-the-badge" alt="XGBoost">
+  <img src="https://img.shields.io/badge/NLP-TF--IDF-6A1B9A?style=for-the-badge" alt="NLP">
+  <img src="https://img.shields.io/badge/License-MIT-blueviolet?style=for-the-badge" alt="MIT License">
 </p>
-```
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Accuracy-90.79%25-success?style=flat-square" />
+  <img src="https://img.shields.io/badge/Task-Multi--Class_Classification-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/Framework-Scikit--Learn-orange?style=flat-square" />
+  <img src="https://img.shields.io/badge/Competition-Kaggle-20BEFF?style=flat-square&logo=kaggle&logoColor=white" />
+</p>
+
+---
 
 ------------------------------------------------------------------------
 
