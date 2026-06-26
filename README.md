@@ -48,55 +48,54 @@ The final model achieves an overall accuracy of **90.79%**, demonstrating the ef
 
 ---
 
-# 📑 Table of Contents
+## 📑 Table of Contents
 
--   Overview
--   Problem Statement
--   Dataset
--   Exploratory Data Analysis
--   Feature Engineering
--   Data Preprocessing
--   Models
--   Hyperparameter Tuning
--   Stacking Ensemble
--   Performance
--   Repository Structure
--   Installation
--   Usage
--   Future Improvements
--   Author
--   License
+- [Overview](#-overview)
+- [Problem Statement](#-problem-statement)
+- [Dataset](#-dataset)
+- [Exploratory Data Analysis](#-exploratory-data-analysis)
+- [Feature Engineering](#-feature-engineering)
+- [Data Preprocessing Pipeline](#-data-preprocessing-pipeline)
+- [Machine Learning Models](#-machine-learning-models)
+- [Hyperparameter Tuning](#-hyperparameter-tuning)
+- [Stacking Ensemble](#-stacking-ensemble)
+- [Model Performance](#-model-performance)
+- [Evaluation](#-evaluation)
+- [Repository Structure](#-repository-structure)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Future Improvements](#-future-improvements)
+- [Roadmap](#-roadmap)
+- [Author](#-author)
+- [License](#-license)
 
-------------------------------------------------------------------------
+---
 
-# 🎯 Problem Statement
+## 🎯 Problem Statement
 
-Modern online platforms generate millions of comments every day.
-Automatically categorizing these comments helps improve moderation,
-recommendation systems, search quality, analytics, and user experience.
+Modern online platforms generate millions of comments every day. Automatically categorizing these comments helps improve moderation, recommendation systems, search quality, analytics, and user experience.
 
 The challenge is to predict the correct category of each comment using:
 
--   Comment text
--   User engagement metrics
--   Metadata
--   Demographic attributes
--   Internal platform-generated features
+- Comment text
+- User engagement metrics
+- Metadata
+- Demographic attributes
+- Internal platform-generated features
 
-This is a **multi-class classification problem** with four target
-classes.
+This is a **multi-class classification problem** with four target classes.
 
-------------------------------------------------------------------------
+---
 
-# 📂 Dataset
+## 📂 Dataset
 
-## Files
+### Files
 
 | File | Description |
-|------|-------------|
-| train.csv | Training dataset containing labels |
-| test.csv | Test dataset without labels |
-| Sample.csv | Submission template |
+|---|---|
+| `train.csv` | Training dataset containing labels |
+| `test.csv` | Test dataset without labels |
+| `Sample.csv` | Submission template |
 
 > **📌 Dataset Notice**
 >
@@ -104,7 +103,7 @@ classes.
 >
 > You can download the datasets directly from the official Kaggle competition page:
 >
-> **🔗 https://www.kaggle.com/competitions/comment-category-prediction-challenge**
+> **🔗 [https://www.kaggle.com/competitions/comment-category-prediction-challenge](https://www.kaggle.com/competitions/comment-category-prediction-challenge)**
 >
 > After downloading, place the following files in the project root directory:
 >
@@ -128,122 +127,111 @@ classes.
 - Post ID
 - Target Label
 
-------------------------------------------------------------------------
+---
 
-# 📊 Exploratory Data Analysis
+## 📊 Exploratory Data Analysis
 
 Several exploratory analyses were performed before model development.
 
 ### Major Findings
 
--   Highly imbalanced target distribution
--   Most comments are relatively short
--   Comment length varies across different classes
--   Class 2 receives the highest engagement
--   Missing values exist primarily in demographic features
--   Numerical features have different scales and require normalization
+- Highly imbalanced target distribution
+- Most comments are relatively short
+- Comment length varies across different classes
+- Class 2 receives the highest engagement
+- Missing values exist primarily in demographic features
+- Numerical features have different scales and require normalization
 
-Visualizations include:
+**Visualizations include:**
+- Target Distribution
+- Comment Length Distribution
+- Box Plot
+- Violin Plot
+- Average Upvotes
+- Confusion Matrix
+- Prediction Distribution
+- Error Analysis
 
--   Target Distribution
--   Comment Length Distribution
--   Box Plot
--   Violin Plot
--   Average Upvotes
--   Confusion Matrix
--   Prediction Distribution
--   Error Analysis
+---
 
-------------------------------------------------------------------------
-
-# 🛠 Feature Engineering
+## 🛠 Feature Engineering
 
 The project uses extensive handcrafted features.
 
-## Text Features
+### Text Features
+- Lowercase conversion
+- Noise removal
+- Word TF-IDF
+- Character TF-IDF
 
--   Lowercase conversion
--   Noise removal
--   Word TF-IDF
--   Character TF-IDF
+### Numerical Features
+- Character Count
+- Word Count
+- Capital Letter Ratio
+- Vote Difference
+- Interaction Feature
 
-## Numerical Features
+### Temporal Features
+- Hour of Comment
 
--   Character Count
--   Word Count
--   Capital Letter Ratio
--   Vote Difference
--   Interaction Feature
+### Post-Level Features
+- Average Upvotes per Post
+- Number of Comments per Post
 
-## Temporal Features
+### Missing Value Handling
+Categorical missing values are replaced using the "Missing" category while missing comments are safely imputed.
 
--   Hour of Comment
+---
 
-## Post-Level Features
-
--   Average Upvotes per Post
--   Number of Comments per Post
-
-## Missing Value Handling
-
-Categorical missing values are replaced using the "Missing" category
-while missing comments are safely imputed.
-
-------------------------------------------------------------------------
-
-# ⚙ Data Preprocessing Pipeline
+## ⚙ Data Preprocessing Pipeline
 
 The preprocessing workflow is implemented using **ColumnTransformer**.
 
-It combines
-
--   Word-level TF-IDF
--   Character-level TF-IDF
--   One-Hot Encoding
--   Standard Scaling
+It combines:
+- Word-level TF-IDF
+- Character-level TF-IDF
+- One-Hot Encoding
+- Standard Scaling
 
 into a single reusable pipeline.
 
-------------------------------------------------------------------------
+---
 
-# 🤖 Machine Learning Models
+## 🤖 Machine Learning Models
 
-Three independent models were trained.
+Three independent models were trained:
 
-  Model                 Purpose
-  --------------------- --------------------------------
-  Logistic Regression   Linear baseline & Meta Learner
-  LightGBM              Gradient Boosting
-  XGBoost               Gradient Boosting
+| Model | Purpose |
+|---|---|
+| **Logistic Regression** | Linear baseline & Meta Learner |
+| **LightGBM** | Gradient Boosting |
+| **XGBoost** | Gradient Boosting |
 
-Each model contributes prediction probabilities that are later combined
-through stacking.
+Each model contributes prediction probabilities that are later combined through stacking.
 
-------------------------------------------------------------------------
+---
 
-# 🔍 Hyperparameter Tuning
+## 🔍 Hyperparameter Tuning
 
-RandomizedSearchCV was used to optimize Logistic Regression.
+`RandomizedSearchCV` was used to optimize Logistic Regression.
 
-Optimized Parameter
-
--   C = 1
+**Optimized Parameter:**
+- `C = 1`
 
 Cross-validation ensured robust model selection.
 
-------------------------------------------------------------------------
+---
 
-# 🏗 Stacking Ensemble
+## 🏗 Stacking Ensemble
 
-Instead of relying on a single model, the project combines predictions
-from multiple learners.
+Instead of relying on a single model, the project combines predictions from multiple learners.
 
-``` text
+```text
                     Dataset
                        │
         ┌──────────────┴──────────────┐
         │                             │
- Feature Engineering          Data Preprocessing
+ Feature Engineering           Data Preprocessing
         │                             │
         └──────────────┬──────────────┘
                        │
@@ -252,64 +240,65 @@ from multiple learners.
        Numerical + Categorical Features
                        │
       ┌────────────┬────────────┬────────────┐
-      │            │            │
- LightGBM      XGBoost   Logistic Regression
-      │            │            │
-      └────────────┴────────────┘
+      │            │            │            │
+  LightGBM      XGBoost   Logistic Regression
+      │            │            │            │
+      └────────────┴────────────┴────────────┘
+                       │
                Prediction Probabilities
                        │
               Logistic Regression
                  (Meta Learner)
                        │
-               Final Prediction
+                Final Prediction
 ```
 
 This ensemble improves robustness and overall prediction accuracy.
 
-------------------------------------------------------------------------
+---
 
-# 📈 Model Performance
+## 📈 Model Performance
 
-## Base Models
+### Base Models
 
-  Model                 Accuracy
-  --------------------- ------------
-  LightGBM              **89.77%**
-  XGBoost               **88.84%**
-  Logistic Regression   **87.79%**
+| Model | Accuracy |
+|---|---|
+| LightGBM | 89.77% |
+| XGBoost | 88.84% |
+| Logistic Regression | 87.79% |
 
-## Final Ensemble
+### Final Ensemble
 
-  Metric            Score
-  ---------- ------------
-  Accuracy     **90.79%**
+| Metric | Score |
+|---|---|
+| Accuracy | 90.79% |
 
 ### Classification Report
 
-  Class     Precision   Recall   F1 Score
-  ------- ----------- -------- ----------
-  0              0.97     0.95       0.96
-  1              0.77     0.78       0.78
-  2              0.85     0.90       0.87
-  3              0.66     0.58       0.62
+| Class | Precision | Recall | F1 Score |
+|---|---|---|---|
+| 0 | 0.97 | 0.95 | 0.96 |
+| 1 | 0.77 | 0.78 | 0.78 |
+| 2 | 0.85 | 0.90 | 0.87 |
+| 3 | 0.66 | 0.58 | 0.62 |
 
-------------------------------------------------------------------------
+---
 
-# 📉 Evaluation
+## 📉 Evaluation
 
-The model is evaluated using
+The model is evaluated using:
 
--   Accuracy
--   Precision
--   Recall
--   F1 Score
--   Confusion Matrix
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- Confusion Matrix
 
 The stacking ensemble consistently outperformed each individual model.
 
-------------------------------------------------------------------------
+---
 
-# 📁 Repository Structure
+## 📁 Repository Structure
 
 ```text
 .
@@ -321,74 +310,68 @@ The stacking ensemble consistently outperformed each individual model.
 └── .gitignore
 ```
 
-------------------------------------------------------------------------
+---
 
-# 🚀 Installation
+## 🚀 Installation
 
-``` bash
+```bash
 git clone <repository-url>
-
 cd Comment-Category-Prediction
-
 pip install -r requirements.txt
 ```
 
-------------------------------------------------------------------------
+---
 
-# ▶ Usage
+## ▶ Usage
 
-Run the notebook sequentially.
+Run the notebook sequentially:
 
-1.  Load Dataset
-2.  Perform EDA
-3.  Engineer Features
-4.  Train Models
-5.  Generate Submission
+1. Load Dataset
+2. Perform EDA
+3. Engineer Features
+4. Train Models
+5. Generate Submission
 
-------------------------------------------------------------------------
+---
 
-# 💡 Future Improvements
+## 💡 Future Improvements
 
--   Transformer-based embeddings
--   BERT / DeBERTa models
--   Optuna optimization
--   SHAP Explainability
--   Better imbalance handling
--   Probability calibration
--   Soft voting ensembles
+- Transformer-based embeddings
+- BERT / DeBERTa models
+- Optuna optimization
+- SHAP Explainability
+- Better imbalance handling
+- Probability calibration
+- Soft voting ensembles
 
-------------------------------------------------------------------------
+---
 
-# 🛣 Roadmap
+## 🛣 Roadmap
 
--   [x] Exploratory Data Analysis
--   [x] Feature Engineering
--   [x] Multiple ML Models
--   [x] Stacking Ensemble
--   [x] Submission Generation
--   [ ] Transformer Models
--   [ ] Model Explainability
--   [ ] Deployment
+- [x] Exploratory Data Analysis
+- [x] Feature Engineering
+- [x] Multiple ML Models
+- [x] Stacking Ensemble
+- [x] Submission Generation
+- [ ] Transformer Models
+- [ ] Model Explainability
+- [ ] Deployment
 
-------------------------------------------------------------------------
+---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
-**Saumya Kumar**
-
-B.Tech CSE, IIIT Kota\
+**Saumyakumar Chauhan**
+B.Tech CSE, IIIT Kota
 B.S. in Data Science, IIT Madras
 
 If you found this repository useful, consider giving it a ⭐.
 
-------------------------------------------------------------------------
-
-# 📜 License
-
-This project is licensed under the **MIT License**.
-
-See the **LICENSE** file included in this repository for the complete license text.
-
 ---
 
-**Note:** This repository is intended for educational, research, and portfolio purposes. Please ensure compliance with the Kaggle Competition Rules and Terms of Use regarding dataset usage and solution sharing.
+## 📜 License
+
+This project is licensed under the **MIT License**.
+See the `LICENSE` file included in this repository for the complete license text.
+
+> **Note:** This repository is intended for educational, research, and portfolio purposes. Please ensure compliance with the Kaggle Competition Rules and Terms of Use regarding dataset usage and solution sharing.
