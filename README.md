@@ -29,23 +29,24 @@
 
 ---
 
-------------------------------------------------------------------------
-
 ## 📌 Overview
 
-This repository contains a complete end-to-end machine learning solution
-developed for the **Comment Category Prediction Challenge**. The
-objective is to automatically classify user comments into one of four
-predefined categories by combining textual information with metadata and
-user interaction features.
+This repository presents a complete **end-to-end machine learning solution** for the **Comment Category Prediction Challenge** hosted on Kaggle.
 
-Unlike a traditional NLP project that only relies on text, this solution
-integrates **textual, numerical, categorical, temporal, and post-level
-features** into a unified preprocessing pipeline. The final prediction
-is generated using a **Stacking Ensemble** consisting of LightGBM,
-XGBoost, and Logistic Regression.
+The objective is to automatically classify user comments into one of **four predefined categories** by combining **Natural Language Processing (NLP)** techniques with structured metadata, handcrafted feature engineering, and ensemble learning.
 
-------------------------------------------------------------------------
+Unlike traditional NLP pipelines that rely solely on text, this project integrates:
+
+- 📝 Word-level & Character-level TF-IDF features
+- 📊 Numerical and statistical features
+- 👥 Categorical demographic information
+- 🕒 Temporal features
+- 📈 Post-level aggregated features
+- 🤖 Stacking Ensemble (LightGBM + XGBoost + Logistic Regression)
+
+The final model achieves an overall accuracy of **90.79%**, demonstrating the effectiveness of combining multiple feature types with ensemble learning.
+
+---
 
 # 📑 Table of Contents
 
